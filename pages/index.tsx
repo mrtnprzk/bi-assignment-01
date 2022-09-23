@@ -1,8 +1,10 @@
+import Reat, { useState, useEffect } from "react";
 import Head from "next/head";
 import type { NextPage, GetServerSideProps } from "next";
 import axios, { AxiosError } from "axios";
 import { User } from "../types";
 import UsersContainer from "../components/UsersContainer";
+import LoadingIndicator from "../components/LoadingIndicator";
 
 interface Props {
   data: User[];
@@ -10,6 +12,8 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ data, error }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   if (error) {
     if (error.message) {
       console.log(error.message);
@@ -17,6 +21,12 @@ const Home: NextPage<Props> = ({ data, error }) => {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    if (data) {
+      setIsLoading(false);
+    }
+  }, [data]);
 
   return (
     <>
@@ -28,7 +38,8 @@ const Home: NextPage<Props> = ({ data, error }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <UsersContainer users={data} />
+      {isLoading && <LoadingIndicator />}
+      {!isLoading && <UsersContainer users={data} />}
     </>
   );
 };
