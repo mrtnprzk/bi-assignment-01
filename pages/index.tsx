@@ -1,4 +1,4 @@
-import Reat, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import type { NextPage, GetServerSideProps } from "next";
 import axios, { AxiosError } from "axios";
