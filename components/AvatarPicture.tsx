@@ -12,8 +12,9 @@ const AvatarPicture = ({ username }: Props) => {
       <Image
         src={`https://avatars.dicebear.com/v2/avataaars/${username}.svg?options[mood][]=happy`}
         alt={username}
-        width={250}
-        height={250}
+        width={100}
+        height={100}
+        className="rounded-full"
       />
     </>
   );

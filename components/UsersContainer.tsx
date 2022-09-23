@@ -7,10 +7,8 @@ interface Props {
 }
 
 const UsersContainer = ({ users }: Props) => {
-  //To Do: Display 4 profiles per line for full HD, 5 for QHD and 6 for 4k.
-
   return (
-    <div>
+    <div className="grid grid-cols-1 tablet:grid-cols-2 hd:grid-cols-3 fhd:grid-cols-4 qhd:grid-cols-5 4k:grid-cols-6">
       {users.map((user) => (
         <UserCard key={user.id} user={user} />
       ))}
