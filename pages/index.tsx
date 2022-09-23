@@ -2,6 +2,7 @@ import Head from "next/head";
 import type { NextPage, GetServerSideProps } from "next";
 import axios, { AxiosError } from "axios";
 import { User } from "../types";
+import UsersContainer from "../components/UsersContainer";
 
 interface Props {
   data: User[];
@@ -16,7 +17,7 @@ const Home: NextPage<Props> = ({ data, error }) => {
       console.log(error);
     }
   }
-  console.log(data);
+
   return (
     <>
       <Head>
@@ -27,6 +28,7 @@ const Home: NextPage<Props> = ({ data, error }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <UsersContainer users={data} />
     </>
   );
 };
